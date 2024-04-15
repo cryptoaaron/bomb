@@ -2,88 +2,63 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgSetWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { FeePool } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryDelegationTotalRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgWithdrawValidatorCommission } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgFundCommunityPool } from "./types/cosmos/distribution/v1beta1/tx";
-import { ValidatorAccumulatedCommissionRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryDelegationRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgWithdrawDelegatorRewardResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgDepositValidatorRewardsPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { QueryValidatorCommissionResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryDelegationRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryDelegatorValidatorsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorHistoricalRewards } from "./types/cosmos/distribution/v1beta1/distribution";
-import { DelegatorWithdrawInfo } from "./types/cosmos/distribution/v1beta1/genesis";
-import { ValidatorHistoricalRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryDelegatorWithdrawAddressRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorCurrentRewards } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryDelegatorWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { Params } from "./types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorAccumulatedCommission } from "./types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorCurrentRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { DelegatorStartingInfoRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryParamsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgUpdateParamsResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgWithdrawDelegatorReward } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgUpdateParams } from "./types/cosmos/distribution/v1beta1/tx";
 import { ValidatorOutstandingRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryValidatorSlashesResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgCommunityPoolSpendResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryDelegationRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { ValidatorOutstandingRewards } from "./types/cosmos/distribution/v1beta1/distribution";
+import { FeePool } from "./types/cosmos/distribution/v1beta1/distribution";
 import { DelegatorStartingInfo } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryValidatorCommissionRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryCommunityPoolRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgWithdrawDelegatorRewardResponse } from "./types/cosmos/distribution/v1beta1/tx";
 import { ValidatorSlashEventRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryValidatorOutstandingRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { CommunityPoolSpendProposalWithDeposit } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgDepositValidatorRewardsPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryValidatorCommissionRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgWithdrawDelegatorReward } from "./types/cosmos/distribution/v1beta1/tx";
+import { DelegatorWithdrawInfo } from "./types/cosmos/distribution/v1beta1/genesis";
+import { ValidatorHistoricalRewards } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgUpdateParamsResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { GenesisState } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryDelegationRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryDelegationTotalRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { CommunityPoolSpendProposal } from "./types/cosmos/distribution/v1beta1/distribution";
+import { QueryValidatorDistributionInfoRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgUpdateParams } from "./types/cosmos/distribution/v1beta1/tx";
+import { ValidatorAccumulatedCommissionRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryParamsResponse } from "./types/cosmos/distribution/v1beta1/query";
 import { QueryValidatorSlashesRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryCommunityPoolRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgFundCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryDelegatorWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgWithdrawValidatorCommission } from "./types/cosmos/distribution/v1beta1/tx";
+import { Params } from "./types/cosmos/distribution/v1beta1/distribution";
+import { QueryValidatorDistributionInfoResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgSetWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { MsgDepositValidatorRewardsPool } from "./types/cosmos/distribution/v1beta1/tx";
+import { ValidatorHistoricalRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { ValidatorSlashEvents } from "./types/cosmos/distribution/v1beta1/distribution";
+import { ValidatorCurrentRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryParamsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryValidatorCommissionResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryDelegatorValidatorsResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { ValidatorSlashEvent } from "./types/cosmos/distribution/v1beta1/distribution";
+import { QueryDelegatorWithdrawAddressRequest } from "./types/cosmos/distribution/v1beta1/query";
 import { MsgSetWithdrawAddress } from "./types/cosmos/distribution/v1beta1/tx";
 import { MsgCommunityPoolSpend } from "./types/cosmos/distribution/v1beta1/tx";
-import { GenesisState } from "./types/cosmos/distribution/v1beta1/genesis";
-import { MsgWithdrawValidatorCommissionResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgDepositValidatorRewardsPool } from "./types/cosmos/distribution/v1beta1/tx";
-import { CommunityPoolSpendProposal } from "./types/cosmos/distribution/v1beta1/distribution";
-import { DelegationDelegatorReward } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryValidatorDistributionInfoRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorSlashEvents } from "./types/cosmos/distribution/v1beta1/distribution";
-import { CommunityPoolSpendProposalWithDeposit } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryValidatorDistributionInfoResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryValidatorOutstandingRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryDelegationTotalRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgCommunityPoolSpendResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { DelegatorStartingInfoRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryValidatorSlashesResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryDelegationTotalRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
 import { QueryDelegatorValidatorsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorSlashEvent } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryParamsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgWithdrawValidatorCommissionResponse } from "./types/cosmos/distribution/v1beta1/tx";
 import { QueryValidatorOutstandingRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgFundCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { ValidatorOutstandingRewards } from "./types/cosmos/distribution/v1beta1/distribution";
-export { MsgSetWithdrawAddressResponse, FeePool, QueryDelegationTotalRewardsResponse, MsgWithdrawValidatorCommission, MsgFundCommunityPool, ValidatorAccumulatedCommissionRecord, QueryDelegationRewardsRequest, MsgWithdrawDelegatorRewardResponse, MsgDepositValidatorRewardsPoolResponse, QueryValidatorCommissionResponse, QueryDelegationRewardsResponse, QueryDelegatorValidatorsResponse, ValidatorHistoricalRewards, DelegatorWithdrawInfo, ValidatorHistoricalRewardsRecord, QueryDelegatorWithdrawAddressRequest, ValidatorCurrentRewards, QueryDelegatorWithdrawAddressResponse, Params, ValidatorAccumulatedCommission, ValidatorCurrentRewardsRecord, DelegatorStartingInfoRecord, QueryParamsResponse, QueryCommunityPoolResponse, MsgUpdateParamsResponse, MsgWithdrawDelegatorReward, MsgUpdateParams, ValidatorOutstandingRewardsRecord, QueryValidatorSlashesResponse, MsgCommunityPoolSpendResponse, DelegatorStartingInfo, QueryValidatorCommissionRequest, QueryCommunityPoolRequest, ValidatorSlashEventRecord, QueryValidatorSlashesRequest, MsgSetWithdrawAddress, MsgCommunityPoolSpend, GenesisState, MsgWithdrawValidatorCommissionResponse, MsgDepositValidatorRewardsPool, CommunityPoolSpendProposal, DelegationDelegatorReward, QueryValidatorDistributionInfoRequest, ValidatorSlashEvents, CommunityPoolSpendProposalWithDeposit, QueryValidatorDistributionInfoResponse, QueryValidatorOutstandingRewardsRequest, QueryDelegationTotalRewardsRequest, QueryDelegatorValidatorsRequest, ValidatorSlashEvent, QueryParamsRequest, QueryValidatorOutstandingRewardsResponse, MsgFundCommunityPoolResponse, ValidatorOutstandingRewards };
-type sendMsgSetWithdrawAddressResponseParams = {
-    value: MsgSetWithdrawAddressResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendFeePoolParams = {
-    value: FeePool;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDelegationTotalRewardsResponseParams = {
-    value: QueryDelegationTotalRewardsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgWithdrawValidatorCommissionParams = {
-    value: MsgWithdrawValidatorCommission;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgFundCommunityPoolParams = {
-    value: MsgFundCommunityPool;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorAccumulatedCommissionRecordParams = {
-    value: ValidatorAccumulatedCommissionRecord;
+import { ValidatorCurrentRewards } from "./types/cosmos/distribution/v1beta1/distribution";
+import { ValidatorAccumulatedCommission } from "./types/cosmos/distribution/v1beta1/distribution";
+import { DelegationDelegatorReward } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgFundCommunityPool } from "./types/cosmos/distribution/v1beta1/tx";
+export { ValidatorOutstandingRewardsRecord, QueryDelegationRewardsRequest, ValidatorOutstandingRewards, FeePool, DelegatorStartingInfo, MsgWithdrawDelegatorRewardResponse, ValidatorSlashEventRecord, QueryValidatorOutstandingRewardsRequest, CommunityPoolSpendProposalWithDeposit, MsgDepositValidatorRewardsPoolResponse, QueryValidatorCommissionRequest, MsgWithdrawDelegatorReward, DelegatorWithdrawInfo, ValidatorHistoricalRewards, MsgUpdateParamsResponse, GenesisState, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, CommunityPoolSpendProposal, QueryValidatorDistributionInfoRequest, MsgUpdateParams, ValidatorAccumulatedCommissionRecord, QueryParamsResponse, QueryValidatorSlashesRequest, QueryCommunityPoolRequest, QueryCommunityPoolResponse, MsgFundCommunityPoolResponse, QueryDelegatorWithdrawAddressResponse, MsgWithdrawValidatorCommission, Params, QueryValidatorDistributionInfoResponse, MsgSetWithdrawAddressResponse, MsgDepositValidatorRewardsPool, ValidatorHistoricalRewardsRecord, ValidatorSlashEvents, ValidatorCurrentRewardsRecord, QueryParamsRequest, QueryValidatorCommissionResponse, QueryDelegatorValidatorsResponse, ValidatorSlashEvent, QueryDelegatorWithdrawAddressRequest, MsgSetWithdrawAddress, MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse, DelegatorStartingInfoRecord, QueryValidatorSlashesResponse, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, MsgWithdrawValidatorCommissionResponse, QueryValidatorOutstandingRewardsResponse, ValidatorCurrentRewards, ValidatorAccumulatedCommission, DelegationDelegatorReward, MsgFundCommunityPool };
+type sendValidatorOutstandingRewardsRecordParams = {
+    value: ValidatorOutstandingRewardsRecord;
     fee?: StdFee;
     memo?: string;
 };
@@ -92,118 +67,13 @@ type sendQueryDelegationRewardsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgWithdrawDelegatorRewardResponseParams = {
-    value: MsgWithdrawDelegatorRewardResponse;
+type sendValidatorOutstandingRewardsParams = {
+    value: ValidatorOutstandingRewards;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgDepositValidatorRewardsPoolResponseParams = {
-    value: MsgDepositValidatorRewardsPoolResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryValidatorCommissionResponseParams = {
-    value: QueryValidatorCommissionResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDelegationRewardsResponseParams = {
-    value: QueryDelegationRewardsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDelegatorValidatorsResponseParams = {
-    value: QueryDelegatorValidatorsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorHistoricalRewardsParams = {
-    value: ValidatorHistoricalRewards;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDelegatorWithdrawInfoParams = {
-    value: DelegatorWithdrawInfo;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorHistoricalRewardsRecordParams = {
-    value: ValidatorHistoricalRewardsRecord;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDelegatorWithdrawAddressRequestParams = {
-    value: QueryDelegatorWithdrawAddressRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorCurrentRewardsParams = {
-    value: ValidatorCurrentRewards;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDelegatorWithdrawAddressResponseParams = {
-    value: QueryDelegatorWithdrawAddressResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorAccumulatedCommissionParams = {
-    value: ValidatorAccumulatedCommission;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorCurrentRewardsRecordParams = {
-    value: ValidatorCurrentRewardsRecord;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDelegatorStartingInfoRecordParams = {
-    value: DelegatorStartingInfoRecord;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryCommunityPoolResponseParams = {
-    value: QueryCommunityPoolResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgWithdrawDelegatorRewardParams = {
-    value: MsgWithdrawDelegatorReward;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorOutstandingRewardsRecordParams = {
-    value: ValidatorOutstandingRewardsRecord;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryValidatorSlashesResponseParams = {
-    value: QueryValidatorSlashesResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgCommunityPoolSpendResponseParams = {
-    value: MsgCommunityPoolSpendResponse;
+type sendFeePoolParams = {
+    value: FeePool;
     fee?: StdFee;
     memo?: string;
 };
@@ -212,13 +82,8 @@ type sendDelegatorStartingInfoParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryValidatorCommissionRequestParams = {
-    value: QueryValidatorCommissionRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryCommunityPoolRequestParams = {
-    value: QueryCommunityPoolRequest;
+type sendMsgWithdrawDelegatorRewardResponseParams = {
+    value: MsgWithdrawDelegatorRewardResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -227,8 +92,173 @@ type sendValidatorSlashEventRecordParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendQueryValidatorOutstandingRewardsRequestParams = {
+    value: QueryValidatorOutstandingRewardsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendCommunityPoolSpendProposalWithDepositParams = {
+    value: CommunityPoolSpendProposalWithDeposit;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgDepositValidatorRewardsPoolResponseParams = {
+    value: MsgDepositValidatorRewardsPoolResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryValidatorCommissionRequestParams = {
+    value: QueryValidatorCommissionRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgWithdrawDelegatorRewardParams = {
+    value: MsgWithdrawDelegatorReward;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendDelegatorWithdrawInfoParams = {
+    value: DelegatorWithdrawInfo;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorHistoricalRewardsParams = {
+    value: ValidatorHistoricalRewards;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDelegationRewardsResponseParams = {
+    value: QueryDelegationRewardsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDelegationTotalRewardsRequestParams = {
+    value: QueryDelegationTotalRewardsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendCommunityPoolSpendProposalParams = {
+    value: CommunityPoolSpendProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryValidatorDistributionInfoRequestParams = {
+    value: QueryValidatorDistributionInfoRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorAccumulatedCommissionRecordParams = {
+    value: ValidatorAccumulatedCommissionRecord;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsResponseParams = {
+    value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryValidatorSlashesRequestParams = {
     value: QueryValidatorSlashesRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryCommunityPoolRequestParams = {
+    value: QueryCommunityPoolRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryCommunityPoolResponseParams = {
+    value: QueryCommunityPoolResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgFundCommunityPoolResponseParams = {
+    value: MsgFundCommunityPoolResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDelegatorWithdrawAddressResponseParams = {
+    value: QueryDelegatorWithdrawAddressResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgWithdrawValidatorCommissionParams = {
+    value: MsgWithdrawValidatorCommission;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryValidatorDistributionInfoResponseParams = {
+    value: QueryValidatorDistributionInfoResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgSetWithdrawAddressResponseParams = {
+    value: MsgSetWithdrawAddressResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgDepositValidatorRewardsPoolParams = {
+    value: MsgDepositValidatorRewardsPool;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorHistoricalRewardsRecordParams = {
+    value: ValidatorHistoricalRewardsRecord;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorSlashEventsParams = {
+    value: ValidatorSlashEvents;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorCurrentRewardsRecordParams = {
+    value: ValidatorCurrentRewardsRecord;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryValidatorCommissionResponseParams = {
+    value: QueryValidatorCommissionResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDelegatorValidatorsResponseParams = {
+    value: QueryDelegatorValidatorsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendValidatorSlashEventParams = {
+    value: ValidatorSlashEvent;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryDelegatorWithdrawAddressRequestParams = {
+    value: QueryDelegatorWithdrawAddressRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -242,58 +272,23 @@ type sendMsgCommunityPoolSpendParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendGenesisStateParams = {
-    value: GenesisState;
+type sendMsgCommunityPoolSpendResponseParams = {
+    value: MsgCommunityPoolSpendResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgWithdrawValidatorCommissionResponseParams = {
-    value: MsgWithdrawValidatorCommissionResponse;
+type sendDelegatorStartingInfoRecordParams = {
+    value: DelegatorStartingInfoRecord;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgDepositValidatorRewardsPoolParams = {
-    value: MsgDepositValidatorRewardsPool;
+type sendQueryValidatorSlashesResponseParams = {
+    value: QueryValidatorSlashesResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendCommunityPoolSpendProposalParams = {
-    value: CommunityPoolSpendProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendDelegationDelegatorRewardParams = {
-    value: DelegationDelegatorReward;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryValidatorDistributionInfoRequestParams = {
-    value: QueryValidatorDistributionInfoRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorSlashEventsParams = {
-    value: ValidatorSlashEvents;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendCommunityPoolSpendProposalWithDepositParams = {
-    value: CommunityPoolSpendProposalWithDeposit;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryValidatorDistributionInfoResponseParams = {
-    value: QueryValidatorDistributionInfoResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryValidatorOutstandingRewardsRequestParams = {
-    value: QueryValidatorOutstandingRewardsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryDelegationTotalRewardsRequestParams = {
-    value: QueryDelegationTotalRewardsRequest;
+type sendQueryDelegationTotalRewardsResponseParams = {
+    value: QueryDelegationTotalRewardsResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -302,13 +297,8 @@ type sendQueryDelegatorValidatorsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendValidatorSlashEventParams = {
-    value: ValidatorSlashEvent;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
+type sendMsgWithdrawValidatorCommissionResponseParams = {
+    value: MsgWithdrawValidatorCommissionResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -317,120 +307,148 @@ type sendQueryValidatorOutstandingRewardsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgFundCommunityPoolResponseParams = {
-    value: MsgFundCommunityPoolResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendValidatorOutstandingRewardsParams = {
-    value: ValidatorOutstandingRewards;
-    fee?: StdFee;
-    memo?: string;
-};
-type msgSetWithdrawAddressResponseParams = {
-    value: MsgSetWithdrawAddressResponse;
-};
-type feePoolParams = {
-    value: FeePool;
-};
-type queryDelegationTotalRewardsResponseParams = {
-    value: QueryDelegationTotalRewardsResponse;
-};
-type msgWithdrawValidatorCommissionParams = {
-    value: MsgWithdrawValidatorCommission;
-};
-type msgFundCommunityPoolParams = {
-    value: MsgFundCommunityPool;
-};
-type validatorAccumulatedCommissionRecordParams = {
-    value: ValidatorAccumulatedCommissionRecord;
-};
-type queryDelegationRewardsRequestParams = {
-    value: QueryDelegationRewardsRequest;
-};
-type msgWithdrawDelegatorRewardResponseParams = {
-    value: MsgWithdrawDelegatorRewardResponse;
-};
-type msgDepositValidatorRewardsPoolResponseParams = {
-    value: MsgDepositValidatorRewardsPoolResponse;
-};
-type queryValidatorCommissionResponseParams = {
-    value: QueryValidatorCommissionResponse;
-};
-type queryDelegationRewardsResponseParams = {
-    value: QueryDelegationRewardsResponse;
-};
-type queryDelegatorValidatorsResponseParams = {
-    value: QueryDelegatorValidatorsResponse;
-};
-type validatorHistoricalRewardsParams = {
-    value: ValidatorHistoricalRewards;
-};
-type delegatorWithdrawInfoParams = {
-    value: DelegatorWithdrawInfo;
-};
-type validatorHistoricalRewardsRecordParams = {
-    value: ValidatorHistoricalRewardsRecord;
-};
-type queryDelegatorWithdrawAddressRequestParams = {
-    value: QueryDelegatorWithdrawAddressRequest;
-};
-type validatorCurrentRewardsParams = {
+type sendValidatorCurrentRewardsParams = {
     value: ValidatorCurrentRewards;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryDelegatorWithdrawAddressResponseParams = {
-    value: QueryDelegatorWithdrawAddressResponse;
-};
-type paramsParams = {
-    value: Params;
-};
-type validatorAccumulatedCommissionParams = {
+type sendValidatorAccumulatedCommissionParams = {
     value: ValidatorAccumulatedCommission;
+    fee?: StdFee;
+    memo?: string;
 };
-type validatorCurrentRewardsRecordParams = {
-    value: ValidatorCurrentRewardsRecord;
+type sendDelegationDelegatorRewardParams = {
+    value: DelegationDelegatorReward;
+    fee?: StdFee;
+    memo?: string;
 };
-type delegatorStartingInfoRecordParams = {
-    value: DelegatorStartingInfoRecord;
-};
-type queryParamsResponseParams = {
-    value: QueryParamsResponse;
-};
-type queryCommunityPoolResponseParams = {
-    value: QueryCommunityPoolResponse;
-};
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-};
-type msgWithdrawDelegatorRewardParams = {
-    value: MsgWithdrawDelegatorReward;
-};
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type sendMsgFundCommunityPoolParams = {
+    value: MsgFundCommunityPool;
+    fee?: StdFee;
+    memo?: string;
 };
 type validatorOutstandingRewardsRecordParams = {
     value: ValidatorOutstandingRewardsRecord;
 };
-type queryValidatorSlashesResponseParams = {
-    value: QueryValidatorSlashesResponse;
+type queryDelegationRewardsRequestParams = {
+    value: QueryDelegationRewardsRequest;
 };
-type msgCommunityPoolSpendResponseParams = {
-    value: MsgCommunityPoolSpendResponse;
+type validatorOutstandingRewardsParams = {
+    value: ValidatorOutstandingRewards;
+};
+type feePoolParams = {
+    value: FeePool;
 };
 type delegatorStartingInfoParams = {
     value: DelegatorStartingInfo;
 };
-type queryValidatorCommissionRequestParams = {
-    value: QueryValidatorCommissionRequest;
-};
-type queryCommunityPoolRequestParams = {
-    value: QueryCommunityPoolRequest;
+type msgWithdrawDelegatorRewardResponseParams = {
+    value: MsgWithdrawDelegatorRewardResponse;
 };
 type validatorSlashEventRecordParams = {
     value: ValidatorSlashEventRecord;
 };
+type queryValidatorOutstandingRewardsRequestParams = {
+    value: QueryValidatorOutstandingRewardsRequest;
+};
+type communityPoolSpendProposalWithDepositParams = {
+    value: CommunityPoolSpendProposalWithDeposit;
+};
+type msgDepositValidatorRewardsPoolResponseParams = {
+    value: MsgDepositValidatorRewardsPoolResponse;
+};
+type queryValidatorCommissionRequestParams = {
+    value: QueryValidatorCommissionRequest;
+};
+type msgWithdrawDelegatorRewardParams = {
+    value: MsgWithdrawDelegatorReward;
+};
+type delegatorWithdrawInfoParams = {
+    value: DelegatorWithdrawInfo;
+};
+type validatorHistoricalRewardsParams = {
+    value: ValidatorHistoricalRewards;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
+type queryDelegationRewardsResponseParams = {
+    value: QueryDelegationRewardsResponse;
+};
+type queryDelegationTotalRewardsRequestParams = {
+    value: QueryDelegationTotalRewardsRequest;
+};
+type communityPoolSpendProposalParams = {
+    value: CommunityPoolSpendProposal;
+};
+type queryValidatorDistributionInfoRequestParams = {
+    value: QueryValidatorDistributionInfoRequest;
+};
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
+type validatorAccumulatedCommissionRecordParams = {
+    value: ValidatorAccumulatedCommissionRecord;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
+};
 type queryValidatorSlashesRequestParams = {
     value: QueryValidatorSlashesRequest;
+};
+type queryCommunityPoolRequestParams = {
+    value: QueryCommunityPoolRequest;
+};
+type queryCommunityPoolResponseParams = {
+    value: QueryCommunityPoolResponse;
+};
+type msgFundCommunityPoolResponseParams = {
+    value: MsgFundCommunityPoolResponse;
+};
+type queryDelegatorWithdrawAddressResponseParams = {
+    value: QueryDelegatorWithdrawAddressResponse;
+};
+type msgWithdrawValidatorCommissionParams = {
+    value: MsgWithdrawValidatorCommission;
+};
+type paramsParams = {
+    value: Params;
+};
+type queryValidatorDistributionInfoResponseParams = {
+    value: QueryValidatorDistributionInfoResponse;
+};
+type msgSetWithdrawAddressResponseParams = {
+    value: MsgSetWithdrawAddressResponse;
+};
+type msgDepositValidatorRewardsPoolParams = {
+    value: MsgDepositValidatorRewardsPool;
+};
+type validatorHistoricalRewardsRecordParams = {
+    value: ValidatorHistoricalRewardsRecord;
+};
+type validatorSlashEventsParams = {
+    value: ValidatorSlashEvents;
+};
+type validatorCurrentRewardsRecordParams = {
+    value: ValidatorCurrentRewardsRecord;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
+};
+type queryValidatorCommissionResponseParams = {
+    value: QueryValidatorCommissionResponse;
+};
+type queryDelegatorValidatorsResponseParams = {
+    value: QueryDelegatorValidatorsResponse;
+};
+type validatorSlashEventParams = {
+    value: ValidatorSlashEvent;
+};
+type queryDelegatorWithdrawAddressRequestParams = {
+    value: QueryDelegatorWithdrawAddressRequest;
 };
 type msgSetWithdrawAddressParams = {
     value: MsgSetWithdrawAddress;
@@ -438,56 +456,38 @@ type msgSetWithdrawAddressParams = {
 type msgCommunityPoolSpendParams = {
     value: MsgCommunityPoolSpend;
 };
-type genesisStateParams = {
-    value: GenesisState;
+type msgCommunityPoolSpendResponseParams = {
+    value: MsgCommunityPoolSpendResponse;
 };
-type msgWithdrawValidatorCommissionResponseParams = {
-    value: MsgWithdrawValidatorCommissionResponse;
+type delegatorStartingInfoRecordParams = {
+    value: DelegatorStartingInfoRecord;
 };
-type msgDepositValidatorRewardsPoolParams = {
-    value: MsgDepositValidatorRewardsPool;
+type queryValidatorSlashesResponseParams = {
+    value: QueryValidatorSlashesResponse;
 };
-type communityPoolSpendProposalParams = {
-    value: CommunityPoolSpendProposal;
-};
-type delegationDelegatorRewardParams = {
-    value: DelegationDelegatorReward;
-};
-type queryValidatorDistributionInfoRequestParams = {
-    value: QueryValidatorDistributionInfoRequest;
-};
-type validatorSlashEventsParams = {
-    value: ValidatorSlashEvents;
-};
-type communityPoolSpendProposalWithDepositParams = {
-    value: CommunityPoolSpendProposalWithDeposit;
-};
-type queryValidatorDistributionInfoResponseParams = {
-    value: QueryValidatorDistributionInfoResponse;
-};
-type queryValidatorOutstandingRewardsRequestParams = {
-    value: QueryValidatorOutstandingRewardsRequest;
-};
-type queryDelegationTotalRewardsRequestParams = {
-    value: QueryDelegationTotalRewardsRequest;
+type queryDelegationTotalRewardsResponseParams = {
+    value: QueryDelegationTotalRewardsResponse;
 };
 type queryDelegatorValidatorsRequestParams = {
     value: QueryDelegatorValidatorsRequest;
 };
-type validatorSlashEventParams = {
-    value: ValidatorSlashEvent;
-};
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
+type msgWithdrawValidatorCommissionResponseParams = {
+    value: MsgWithdrawValidatorCommissionResponse;
 };
 type queryValidatorOutstandingRewardsResponseParams = {
     value: QueryValidatorOutstandingRewardsResponse;
 };
-type msgFundCommunityPoolResponseParams = {
-    value: MsgFundCommunityPoolResponse;
+type validatorCurrentRewardsParams = {
+    value: ValidatorCurrentRewards;
 };
-type validatorOutstandingRewardsParams = {
-    value: ValidatorOutstandingRewards;
+type validatorAccumulatedCommissionParams = {
+    value: ValidatorAccumulatedCommission;
+};
+type delegationDelegatorRewardParams = {
+    value: DelegationDelegatorReward;
+};
+type msgFundCommunityPoolParams = {
+    value: MsgFundCommunityPool;
 };
 export declare const registry: Registry;
 interface TxClientOptions {
@@ -496,114 +496,114 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgSetWithdrawAddressResponse({ value, fee, memo }: sendMsgSetWithdrawAddressResponseParams): Promise<DeliverTxResponse>;
-    sendFeePool({ value, fee, memo }: sendFeePoolParams): Promise<DeliverTxResponse>;
-    sendQueryDelegationTotalRewardsResponse({ value, fee, memo }: sendQueryDelegationTotalRewardsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgWithdrawValidatorCommission({ value, fee, memo }: sendMsgWithdrawValidatorCommissionParams): Promise<DeliverTxResponse>;
-    sendMsgFundCommunityPool({ value, fee, memo }: sendMsgFundCommunityPoolParams): Promise<DeliverTxResponse>;
-    sendValidatorAccumulatedCommissionRecord({ value, fee, memo }: sendValidatorAccumulatedCommissionRecordParams): Promise<DeliverTxResponse>;
-    sendQueryDelegationRewardsRequest({ value, fee, memo }: sendQueryDelegationRewardsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgWithdrawDelegatorRewardResponse({ value, fee, memo }: sendMsgWithdrawDelegatorRewardResponseParams): Promise<DeliverTxResponse>;
-    sendMsgDepositValidatorRewardsPoolResponse({ value, fee, memo }: sendMsgDepositValidatorRewardsPoolResponseParams): Promise<DeliverTxResponse>;
-    sendQueryValidatorCommissionResponse({ value, fee, memo }: sendQueryValidatorCommissionResponseParams): Promise<DeliverTxResponse>;
-    sendQueryDelegationRewardsResponse({ value, fee, memo }: sendQueryDelegationRewardsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryDelegatorValidatorsResponse({ value, fee, memo }: sendQueryDelegatorValidatorsResponseParams): Promise<DeliverTxResponse>;
-    sendValidatorHistoricalRewards({ value, fee, memo }: sendValidatorHistoricalRewardsParams): Promise<DeliverTxResponse>;
-    sendDelegatorWithdrawInfo({ value, fee, memo }: sendDelegatorWithdrawInfoParams): Promise<DeliverTxResponse>;
-    sendValidatorHistoricalRewardsRecord({ value, fee, memo }: sendValidatorHistoricalRewardsRecordParams): Promise<DeliverTxResponse>;
-    sendQueryDelegatorWithdrawAddressRequest({ value, fee, memo }: sendQueryDelegatorWithdrawAddressRequestParams): Promise<DeliverTxResponse>;
-    sendValidatorCurrentRewards({ value, fee, memo }: sendValidatorCurrentRewardsParams): Promise<DeliverTxResponse>;
-    sendQueryDelegatorWithdrawAddressResponse({ value, fee, memo }: sendQueryDelegatorWithdrawAddressResponseParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendValidatorAccumulatedCommission({ value, fee, memo }: sendValidatorAccumulatedCommissionParams): Promise<DeliverTxResponse>;
-    sendValidatorCurrentRewardsRecord({ value, fee, memo }: sendValidatorCurrentRewardsRecordParams): Promise<DeliverTxResponse>;
-    sendDelegatorStartingInfoRecord({ value, fee, memo }: sendDelegatorStartingInfoRecordParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryCommunityPoolResponse({ value, fee, memo }: sendQueryCommunityPoolResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgWithdrawDelegatorReward({ value, fee, memo }: sendMsgWithdrawDelegatorRewardParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendValidatorOutstandingRewardsRecord({ value, fee, memo }: sendValidatorOutstandingRewardsRecordParams): Promise<DeliverTxResponse>;
-    sendQueryValidatorSlashesResponse({ value, fee, memo }: sendQueryValidatorSlashesResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCommunityPoolSpendResponse({ value, fee, memo }: sendMsgCommunityPoolSpendResponseParams): Promise<DeliverTxResponse>;
+    sendQueryDelegationRewardsRequest({ value, fee, memo }: sendQueryDelegationRewardsRequestParams): Promise<DeliverTxResponse>;
+    sendValidatorOutstandingRewards({ value, fee, memo }: sendValidatorOutstandingRewardsParams): Promise<DeliverTxResponse>;
+    sendFeePool({ value, fee, memo }: sendFeePoolParams): Promise<DeliverTxResponse>;
     sendDelegatorStartingInfo({ value, fee, memo }: sendDelegatorStartingInfoParams): Promise<DeliverTxResponse>;
-    sendQueryValidatorCommissionRequest({ value, fee, memo }: sendQueryValidatorCommissionRequestParams): Promise<DeliverTxResponse>;
-    sendQueryCommunityPoolRequest({ value, fee, memo }: sendQueryCommunityPoolRequestParams): Promise<DeliverTxResponse>;
+    sendMsgWithdrawDelegatorRewardResponse({ value, fee, memo }: sendMsgWithdrawDelegatorRewardResponseParams): Promise<DeliverTxResponse>;
     sendValidatorSlashEventRecord({ value, fee, memo }: sendValidatorSlashEventRecordParams): Promise<DeliverTxResponse>;
+    sendQueryValidatorOutstandingRewardsRequest({ value, fee, memo }: sendQueryValidatorOutstandingRewardsRequestParams): Promise<DeliverTxResponse>;
+    sendCommunityPoolSpendProposalWithDeposit({ value, fee, memo }: sendCommunityPoolSpendProposalWithDepositParams): Promise<DeliverTxResponse>;
+    sendMsgDepositValidatorRewardsPoolResponse({ value, fee, memo }: sendMsgDepositValidatorRewardsPoolResponseParams): Promise<DeliverTxResponse>;
+    sendQueryValidatorCommissionRequest({ value, fee, memo }: sendQueryValidatorCommissionRequestParams): Promise<DeliverTxResponse>;
+    sendMsgWithdrawDelegatorReward({ value, fee, memo }: sendMsgWithdrawDelegatorRewardParams): Promise<DeliverTxResponse>;
+    sendDelegatorWithdrawInfo({ value, fee, memo }: sendDelegatorWithdrawInfoParams): Promise<DeliverTxResponse>;
+    sendValidatorHistoricalRewards({ value, fee, memo }: sendValidatorHistoricalRewardsParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryDelegationRewardsResponse({ value, fee, memo }: sendQueryDelegationRewardsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryDelegationTotalRewardsRequest({ value, fee, memo }: sendQueryDelegationTotalRewardsRequestParams): Promise<DeliverTxResponse>;
+    sendCommunityPoolSpendProposal({ value, fee, memo }: sendCommunityPoolSpendProposalParams): Promise<DeliverTxResponse>;
+    sendQueryValidatorDistributionInfoRequest({ value, fee, memo }: sendQueryValidatorDistributionInfoRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendValidatorAccumulatedCommissionRecord({ value, fee, memo }: sendValidatorAccumulatedCommissionRecordParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendQueryValidatorSlashesRequest({ value, fee, memo }: sendQueryValidatorSlashesRequestParams): Promise<DeliverTxResponse>;
+    sendQueryCommunityPoolRequest({ value, fee, memo }: sendQueryCommunityPoolRequestParams): Promise<DeliverTxResponse>;
+    sendQueryCommunityPoolResponse({ value, fee, memo }: sendQueryCommunityPoolResponseParams): Promise<DeliverTxResponse>;
+    sendMsgFundCommunityPoolResponse({ value, fee, memo }: sendMsgFundCommunityPoolResponseParams): Promise<DeliverTxResponse>;
+    sendQueryDelegatorWithdrawAddressResponse({ value, fee, memo }: sendQueryDelegatorWithdrawAddressResponseParams): Promise<DeliverTxResponse>;
+    sendMsgWithdrawValidatorCommission({ value, fee, memo }: sendMsgWithdrawValidatorCommissionParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendQueryValidatorDistributionInfoResponse({ value, fee, memo }: sendQueryValidatorDistributionInfoResponseParams): Promise<DeliverTxResponse>;
+    sendMsgSetWithdrawAddressResponse({ value, fee, memo }: sendMsgSetWithdrawAddressResponseParams): Promise<DeliverTxResponse>;
+    sendMsgDepositValidatorRewardsPool({ value, fee, memo }: sendMsgDepositValidatorRewardsPoolParams): Promise<DeliverTxResponse>;
+    sendValidatorHistoricalRewardsRecord({ value, fee, memo }: sendValidatorHistoricalRewardsRecordParams): Promise<DeliverTxResponse>;
+    sendValidatorSlashEvents({ value, fee, memo }: sendValidatorSlashEventsParams): Promise<DeliverTxResponse>;
+    sendValidatorCurrentRewardsRecord({ value, fee, memo }: sendValidatorCurrentRewardsRecordParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryValidatorCommissionResponse({ value, fee, memo }: sendQueryValidatorCommissionResponseParams): Promise<DeliverTxResponse>;
+    sendQueryDelegatorValidatorsResponse({ value, fee, memo }: sendQueryDelegatorValidatorsResponseParams): Promise<DeliverTxResponse>;
+    sendValidatorSlashEvent({ value, fee, memo }: sendValidatorSlashEventParams): Promise<DeliverTxResponse>;
+    sendQueryDelegatorWithdrawAddressRequest({ value, fee, memo }: sendQueryDelegatorWithdrawAddressRequestParams): Promise<DeliverTxResponse>;
     sendMsgSetWithdrawAddress({ value, fee, memo }: sendMsgSetWithdrawAddressParams): Promise<DeliverTxResponse>;
     sendMsgCommunityPoolSpend({ value, fee, memo }: sendMsgCommunityPoolSpendParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendMsgWithdrawValidatorCommissionResponse({ value, fee, memo }: sendMsgWithdrawValidatorCommissionResponseParams): Promise<DeliverTxResponse>;
-    sendMsgDepositValidatorRewardsPool({ value, fee, memo }: sendMsgDepositValidatorRewardsPoolParams): Promise<DeliverTxResponse>;
-    sendCommunityPoolSpendProposal({ value, fee, memo }: sendCommunityPoolSpendProposalParams): Promise<DeliverTxResponse>;
-    sendDelegationDelegatorReward({ value, fee, memo }: sendDelegationDelegatorRewardParams): Promise<DeliverTxResponse>;
-    sendQueryValidatorDistributionInfoRequest({ value, fee, memo }: sendQueryValidatorDistributionInfoRequestParams): Promise<DeliverTxResponse>;
-    sendValidatorSlashEvents({ value, fee, memo }: sendValidatorSlashEventsParams): Promise<DeliverTxResponse>;
-    sendCommunityPoolSpendProposalWithDeposit({ value, fee, memo }: sendCommunityPoolSpendProposalWithDepositParams): Promise<DeliverTxResponse>;
-    sendQueryValidatorDistributionInfoResponse({ value, fee, memo }: sendQueryValidatorDistributionInfoResponseParams): Promise<DeliverTxResponse>;
-    sendQueryValidatorOutstandingRewardsRequest({ value, fee, memo }: sendQueryValidatorOutstandingRewardsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryDelegationTotalRewardsRequest({ value, fee, memo }: sendQueryDelegationTotalRewardsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgCommunityPoolSpendResponse({ value, fee, memo }: sendMsgCommunityPoolSpendResponseParams): Promise<DeliverTxResponse>;
+    sendDelegatorStartingInfoRecord({ value, fee, memo }: sendDelegatorStartingInfoRecordParams): Promise<DeliverTxResponse>;
+    sendQueryValidatorSlashesResponse({ value, fee, memo }: sendQueryValidatorSlashesResponseParams): Promise<DeliverTxResponse>;
+    sendQueryDelegationTotalRewardsResponse({ value, fee, memo }: sendQueryDelegationTotalRewardsResponseParams): Promise<DeliverTxResponse>;
     sendQueryDelegatorValidatorsRequest({ value, fee, memo }: sendQueryDelegatorValidatorsRequestParams): Promise<DeliverTxResponse>;
-    sendValidatorSlashEvent({ value, fee, memo }: sendValidatorSlashEventParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgWithdrawValidatorCommissionResponse({ value, fee, memo }: sendMsgWithdrawValidatorCommissionResponseParams): Promise<DeliverTxResponse>;
     sendQueryValidatorOutstandingRewardsResponse({ value, fee, memo }: sendQueryValidatorOutstandingRewardsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgFundCommunityPoolResponse({ value, fee, memo }: sendMsgFundCommunityPoolResponseParams): Promise<DeliverTxResponse>;
-    sendValidatorOutstandingRewards({ value, fee, memo }: sendValidatorOutstandingRewardsParams): Promise<DeliverTxResponse>;
-    msgSetWithdrawAddressResponse({ value }: msgSetWithdrawAddressResponseParams): EncodeObject;
-    feePool({ value }: feePoolParams): EncodeObject;
-    queryDelegationTotalRewardsResponse({ value }: queryDelegationTotalRewardsResponseParams): EncodeObject;
-    msgWithdrawValidatorCommission({ value }: msgWithdrawValidatorCommissionParams): EncodeObject;
-    msgFundCommunityPool({ value }: msgFundCommunityPoolParams): EncodeObject;
-    validatorAccumulatedCommissionRecord({ value }: validatorAccumulatedCommissionRecordParams): EncodeObject;
-    queryDelegationRewardsRequest({ value }: queryDelegationRewardsRequestParams): EncodeObject;
-    msgWithdrawDelegatorRewardResponse({ value }: msgWithdrawDelegatorRewardResponseParams): EncodeObject;
-    msgDepositValidatorRewardsPoolResponse({ value }: msgDepositValidatorRewardsPoolResponseParams): EncodeObject;
-    queryValidatorCommissionResponse({ value }: queryValidatorCommissionResponseParams): EncodeObject;
-    queryDelegationRewardsResponse({ value }: queryDelegationRewardsResponseParams): EncodeObject;
-    queryDelegatorValidatorsResponse({ value }: queryDelegatorValidatorsResponseParams): EncodeObject;
-    validatorHistoricalRewards({ value }: validatorHistoricalRewardsParams): EncodeObject;
-    delegatorWithdrawInfo({ value }: delegatorWithdrawInfoParams): EncodeObject;
-    validatorHistoricalRewardsRecord({ value }: validatorHistoricalRewardsRecordParams): EncodeObject;
-    queryDelegatorWithdrawAddressRequest({ value }: queryDelegatorWithdrawAddressRequestParams): EncodeObject;
-    validatorCurrentRewards({ value }: validatorCurrentRewardsParams): EncodeObject;
-    queryDelegatorWithdrawAddressResponse({ value }: queryDelegatorWithdrawAddressResponseParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    validatorAccumulatedCommission({ value }: validatorAccumulatedCommissionParams): EncodeObject;
-    validatorCurrentRewardsRecord({ value }: validatorCurrentRewardsRecordParams): EncodeObject;
-    delegatorStartingInfoRecord({ value }: delegatorStartingInfoRecordParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
-    queryCommunityPoolResponse({ value }: queryCommunityPoolResponseParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    msgWithdrawDelegatorReward({ value }: msgWithdrawDelegatorRewardParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    sendValidatorCurrentRewards({ value, fee, memo }: sendValidatorCurrentRewardsParams): Promise<DeliverTxResponse>;
+    sendValidatorAccumulatedCommission({ value, fee, memo }: sendValidatorAccumulatedCommissionParams): Promise<DeliverTxResponse>;
+    sendDelegationDelegatorReward({ value, fee, memo }: sendDelegationDelegatorRewardParams): Promise<DeliverTxResponse>;
+    sendMsgFundCommunityPool({ value, fee, memo }: sendMsgFundCommunityPoolParams): Promise<DeliverTxResponse>;
     validatorOutstandingRewardsRecord({ value }: validatorOutstandingRewardsRecordParams): EncodeObject;
-    queryValidatorSlashesResponse({ value }: queryValidatorSlashesResponseParams): EncodeObject;
-    msgCommunityPoolSpendResponse({ value }: msgCommunityPoolSpendResponseParams): EncodeObject;
+    queryDelegationRewardsRequest({ value }: queryDelegationRewardsRequestParams): EncodeObject;
+    validatorOutstandingRewards({ value }: validatorOutstandingRewardsParams): EncodeObject;
+    feePool({ value }: feePoolParams): EncodeObject;
     delegatorStartingInfo({ value }: delegatorStartingInfoParams): EncodeObject;
-    queryValidatorCommissionRequest({ value }: queryValidatorCommissionRequestParams): EncodeObject;
-    queryCommunityPoolRequest({ value }: queryCommunityPoolRequestParams): EncodeObject;
+    msgWithdrawDelegatorRewardResponse({ value }: msgWithdrawDelegatorRewardResponseParams): EncodeObject;
     validatorSlashEventRecord({ value }: validatorSlashEventRecordParams): EncodeObject;
+    queryValidatorOutstandingRewardsRequest({ value }: queryValidatorOutstandingRewardsRequestParams): EncodeObject;
+    communityPoolSpendProposalWithDeposit({ value }: communityPoolSpendProposalWithDepositParams): EncodeObject;
+    msgDepositValidatorRewardsPoolResponse({ value }: msgDepositValidatorRewardsPoolResponseParams): EncodeObject;
+    queryValidatorCommissionRequest({ value }: queryValidatorCommissionRequestParams): EncodeObject;
+    msgWithdrawDelegatorReward({ value }: msgWithdrawDelegatorRewardParams): EncodeObject;
+    delegatorWithdrawInfo({ value }: delegatorWithdrawInfoParams): EncodeObject;
+    validatorHistoricalRewards({ value }: validatorHistoricalRewardsParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryDelegationRewardsResponse({ value }: queryDelegationRewardsResponseParams): EncodeObject;
+    queryDelegationTotalRewardsRequest({ value }: queryDelegationTotalRewardsRequestParams): EncodeObject;
+    communityPoolSpendProposal({ value }: communityPoolSpendProposalParams): EncodeObject;
+    queryValidatorDistributionInfoRequest({ value }: queryValidatorDistributionInfoRequestParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    validatorAccumulatedCommissionRecord({ value }: validatorAccumulatedCommissionRecordParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     queryValidatorSlashesRequest({ value }: queryValidatorSlashesRequestParams): EncodeObject;
+    queryCommunityPoolRequest({ value }: queryCommunityPoolRequestParams): EncodeObject;
+    queryCommunityPoolResponse({ value }: queryCommunityPoolResponseParams): EncodeObject;
+    msgFundCommunityPoolResponse({ value }: msgFundCommunityPoolResponseParams): EncodeObject;
+    queryDelegatorWithdrawAddressResponse({ value }: queryDelegatorWithdrawAddressResponseParams): EncodeObject;
+    msgWithdrawValidatorCommission({ value }: msgWithdrawValidatorCommissionParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    queryValidatorDistributionInfoResponse({ value }: queryValidatorDistributionInfoResponseParams): EncodeObject;
+    msgSetWithdrawAddressResponse({ value }: msgSetWithdrawAddressResponseParams): EncodeObject;
+    msgDepositValidatorRewardsPool({ value }: msgDepositValidatorRewardsPoolParams): EncodeObject;
+    validatorHistoricalRewardsRecord({ value }: validatorHistoricalRewardsRecordParams): EncodeObject;
+    validatorSlashEvents({ value }: validatorSlashEventsParams): EncodeObject;
+    validatorCurrentRewardsRecord({ value }: validatorCurrentRewardsRecordParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    queryValidatorCommissionResponse({ value }: queryValidatorCommissionResponseParams): EncodeObject;
+    queryDelegatorValidatorsResponse({ value }: queryDelegatorValidatorsResponseParams): EncodeObject;
+    validatorSlashEvent({ value }: validatorSlashEventParams): EncodeObject;
+    queryDelegatorWithdrawAddressRequest({ value }: queryDelegatorWithdrawAddressRequestParams): EncodeObject;
     msgSetWithdrawAddress({ value }: msgSetWithdrawAddressParams): EncodeObject;
     msgCommunityPoolSpend({ value }: msgCommunityPoolSpendParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    msgWithdrawValidatorCommissionResponse({ value }: msgWithdrawValidatorCommissionResponseParams): EncodeObject;
-    msgDepositValidatorRewardsPool({ value }: msgDepositValidatorRewardsPoolParams): EncodeObject;
-    communityPoolSpendProposal({ value }: communityPoolSpendProposalParams): EncodeObject;
-    delegationDelegatorReward({ value }: delegationDelegatorRewardParams): EncodeObject;
-    queryValidatorDistributionInfoRequest({ value }: queryValidatorDistributionInfoRequestParams): EncodeObject;
-    validatorSlashEvents({ value }: validatorSlashEventsParams): EncodeObject;
-    communityPoolSpendProposalWithDeposit({ value }: communityPoolSpendProposalWithDepositParams): EncodeObject;
-    queryValidatorDistributionInfoResponse({ value }: queryValidatorDistributionInfoResponseParams): EncodeObject;
-    queryValidatorOutstandingRewardsRequest({ value }: queryValidatorOutstandingRewardsRequestParams): EncodeObject;
-    queryDelegationTotalRewardsRequest({ value }: queryDelegationTotalRewardsRequestParams): EncodeObject;
+    msgCommunityPoolSpendResponse({ value }: msgCommunityPoolSpendResponseParams): EncodeObject;
+    delegatorStartingInfoRecord({ value }: delegatorStartingInfoRecordParams): EncodeObject;
+    queryValidatorSlashesResponse({ value }: queryValidatorSlashesResponseParams): EncodeObject;
+    queryDelegationTotalRewardsResponse({ value }: queryDelegationTotalRewardsResponseParams): EncodeObject;
     queryDelegatorValidatorsRequest({ value }: queryDelegatorValidatorsRequestParams): EncodeObject;
-    validatorSlashEvent({ value }: validatorSlashEventParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    msgWithdrawValidatorCommissionResponse({ value }: msgWithdrawValidatorCommissionResponseParams): EncodeObject;
     queryValidatorOutstandingRewardsResponse({ value }: queryValidatorOutstandingRewardsResponseParams): EncodeObject;
-    msgFundCommunityPoolResponse({ value }: msgFundCommunityPoolResponseParams): EncodeObject;
-    validatorOutstandingRewards({ value }: validatorOutstandingRewardsParams): EncodeObject;
+    validatorCurrentRewards({ value }: validatorCurrentRewardsParams): EncodeObject;
+    validatorAccumulatedCommission({ value }: validatorAccumulatedCommissionParams): EncodeObject;
+    delegationDelegatorReward({ value }: delegationDelegatorRewardParams): EncodeObject;
+    msgFundCommunityPool({ value }: msgFundCommunityPoolParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

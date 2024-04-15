@@ -1,6 +1,6 @@
 /// <reference path="./types.d.ts" />
 import { Registry, } from "@cosmjs/proto-signing";
-import { SigningStargateClient, } from "@cosmjs/stargate";
+import { SigningStargateClient } from "@cosmjs/stargate";
 import { EventEmitter } from "events";
 const defaultFee = {
     amount: [],
@@ -65,7 +65,7 @@ export class IgniteClient extends EventEmitter {
             const chainName = chainId?.toUpperCase() + " Network";
             const bankqc = bankQueryClient({ addr: this.env.apiURL });
             const tokens = await (await bankqc.queryTotalSupply()).data;
-            const addrPrefix = this.env.prefix ?? "bm";
+            const addrPrefix = this.env.prefix ?? "cosmos";
             const rpc = this.env.rpcURL;
             const rest = this.env.apiURL;
             let bip44 = {

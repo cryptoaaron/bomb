@@ -3,12 +3,12 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { msgTypes } from './registry';
 import { Api } from "./rest";
-import { MsgUpdateParams } from "./types/cosmos/crisis/v1beta1/tx";
 import { MsgUpdateParamsResponse } from "./types/cosmos/crisis/v1beta1/tx";
 import { GenesisState } from "./types/cosmos/crisis/v1beta1/genesis";
 import { MsgVerifyInvariant } from "./types/cosmos/crisis/v1beta1/tx";
 import { MsgVerifyInvariantResponse } from "./types/cosmos/crisis/v1beta1/tx";
-export { MsgUpdateParams, MsgUpdateParamsResponse, GenesisState, MsgVerifyInvariant, MsgVerifyInvariantResponse };
+import { MsgUpdateParams } from "./types/cosmos/crisis/v1beta1/tx";
+export { MsgUpdateParamsResponse, GenesisState, MsgVerifyInvariant, MsgVerifyInvariantResponse, MsgUpdateParams };
 export const registry = new Registry(msgTypes);
 function getStructure(template) {
     const structure = { fields: [] };
@@ -22,29 +22,15 @@ const defaultFee = {
     amount: [],
     gas: "200000",
 };
-export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26657", prefix: "bm" }) => {
+export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26657", prefix: "cosmos" }) => {
     return {
-        async sendMsgUpdateParams({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry: registry });
-                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
-            }
-        },
         async sendMsgUpdateParamsResponse({ value, fee, memo }) {
             if (!signer) {
                 throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry: registry });
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
                 let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
@@ -58,7 +44,7 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry: registry });
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
                 let msg = this.genesisState({ value: GenesisState.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
@@ -72,7 +58,7 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry: registry });
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
                 let msg = this.msgVerifyInvariant({ value: MsgVerifyInvariant.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
@@ -86,7 +72,7 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry: registry });
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
                 let msg = this.msgVerifyInvariantResponse({ value: MsgVerifyInvariantResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
@@ -94,12 +80,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendMsgVerifyInvariantResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        msgUpdateParams({ value }) {
+        async sendMsgUpdateParams({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
             }
         },
         msgUpdateParamsResponse({ value }) {
@@ -134,6 +126,14 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:MsgVerifyInvariantResponse: Could not create message: ' + e.message);
             }
         },
+        msgUpdateParams({ value }) {
+            try {
+                return { typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
+            }
+        },
     };
 };
 export const queryClient = ({ addr: addr } = { addr: "http://localhost:1317" }) => {
@@ -153,7 +153,7 @@ class SDKModule {
         const methods = txClient({
             signer: client.signer,
             addr: client.env.rpcURL,
-            prefix: client.env.prefix ?? "bm",
+            prefix: client.env.prefix ?? "cosmos",
         });
         this.tx = methods;
         for (let m in methods) {

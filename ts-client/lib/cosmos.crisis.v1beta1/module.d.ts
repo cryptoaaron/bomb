@@ -2,17 +2,12 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { MsgUpdateParams } from "./types/cosmos/crisis/v1beta1/tx";
 import { MsgUpdateParamsResponse } from "./types/cosmos/crisis/v1beta1/tx";
 import { GenesisState } from "./types/cosmos/crisis/v1beta1/genesis";
 import { MsgVerifyInvariant } from "./types/cosmos/crisis/v1beta1/tx";
 import { MsgVerifyInvariantResponse } from "./types/cosmos/crisis/v1beta1/tx";
-export { MsgUpdateParams, MsgUpdateParamsResponse, GenesisState, MsgVerifyInvariant, MsgVerifyInvariantResponse };
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
+import { MsgUpdateParams } from "./types/cosmos/crisis/v1beta1/tx";
+export { MsgUpdateParamsResponse, GenesisState, MsgVerifyInvariant, MsgVerifyInvariantResponse, MsgUpdateParams };
 type sendMsgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
     fee?: StdFee;
@@ -33,8 +28,10 @@ type sendMsgVerifyInvariantResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type msgUpdateParamsParams = {
+type sendMsgUpdateParamsParams = {
     value: MsgUpdateParams;
+    fee?: StdFee;
+    memo?: string;
 };
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
@@ -48,6 +45,9 @@ type msgVerifyInvariantParams = {
 type msgVerifyInvariantResponseParams = {
     value: MsgVerifyInvariantResponse;
 };
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
 export declare const registry: Registry;
 interface TxClientOptions {
     addr: string;
@@ -55,16 +55,16 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
     sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
     sendMsgVerifyInvariant({ value, fee, memo }: sendMsgVerifyInvariantParams): Promise<DeliverTxResponse>;
     sendMsgVerifyInvariantResponse({ value, fee, memo }: sendMsgVerifyInvariantResponseParams): Promise<DeliverTxResponse>;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
     genesisState({ value }: genesisStateParams): EncodeObject;
     msgVerifyInvariant({ value }: msgVerifyInvariantParams): EncodeObject;
     msgVerifyInvariantResponse({ value }: msgVerifyInvariantResponseParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

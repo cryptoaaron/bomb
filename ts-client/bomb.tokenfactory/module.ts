@@ -6,28 +6,26 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgUpdateParamsResponse } from "./types/bomb/tokenfactory/tx";
-import { GenesisState } from "./types/bomb/tokenfactory/genesis";
 import { QueryParamsRequest } from "./types/bomb/tokenfactory/query";
-import { Params } from "./types/bomb/tokenfactory/params";
-import { QueryParamsResponse } from "./types/bomb/tokenfactory/query";
+import { QueryAllDenomRequest } from "./types/bomb/tokenfactory/query";
+import { Denom } from "./types/bomb/tokenfactory/denom";
 import { MsgUpdateParams } from "./types/bomb/tokenfactory/tx";
+import { MsgCreateDenom } from "./types/bomb/tokenfactory/tx";
+import { QueryParamsResponse } from "./types/bomb/tokenfactory/query";
+import { QueryGetDenomResponse } from "./types/bomb/tokenfactory/query";
+import { GenesisState } from "./types/bomb/tokenfactory/genesis";
+import { Params } from "./types/bomb/tokenfactory/params";
+import { MsgUpdateDenom } from "./types/bomb/tokenfactory/tx";
+import { MsgDeleteDenomResponse } from "./types/bomb/tokenfactory/tx";
+import { QueryGetDenomRequest } from "./types/bomb/tokenfactory/query";
+import { MsgCreateDenomResponse } from "./types/bomb/tokenfactory/tx";
+import { MsgUpdateDenomResponse } from "./types/bomb/tokenfactory/tx";
+import { MsgDeleteDenom } from "./types/bomb/tokenfactory/tx";
+import { QueryAllDenomResponse } from "./types/bomb/tokenfactory/query";
+import { MsgUpdateParamsResponse } from "./types/bomb/tokenfactory/tx";
 
-import { Denom as typeDenom} from "./types"
 
-export { MsgUpdateParamsResponse, GenesisState, QueryParamsRequest, Params, QueryParamsResponse, MsgUpdateParams };
-
-type sendMsgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
+export { QueryParamsRequest, QueryAllDenomRequest, Denom, MsgUpdateParams, MsgCreateDenom, QueryParamsResponse, QueryGetDenomResponse, GenesisState, Params, MsgUpdateDenom, MsgDeleteDenomResponse, QueryGetDenomRequest, MsgCreateDenomResponse, MsgUpdateDenomResponse, MsgDeleteDenom, QueryAllDenomResponse, MsgUpdateParamsResponse };
 
 type sendQueryParamsRequestParams = {
   value: QueryParamsRequest,
@@ -35,14 +33,14 @@ type sendQueryParamsRequestParams = {
   memo?: string
 };
 
-type sendParamsParams = {
-  value: Params,
+type sendQueryAllDenomRequestParams = {
+  value: QueryAllDenomRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
+type sendDenomParams = {
+  value: Denom,
   fee?: StdFee,
   memo?: string
 };
@@ -53,29 +51,151 @@ type sendMsgUpdateParamsParams = {
   memo?: string
 };
 
-
-type msgUpdateParamsResponseParams = {
-  value: MsgUpdateParamsResponse,
+type sendMsgCreateDenomParams = {
+  value: MsgCreateDenom,
+  fee?: StdFee,
+  memo?: string
 };
 
-type genesisStateParams = {
+type sendQueryParamsResponseParams = {
+  value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetDenomResponseParams = {
+  value: QueryGetDenomResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendGenesisStateParams = {
   value: GenesisState,
+  fee?: StdFee,
+  memo?: string
 };
+
+type sendParamsParams = {
+  value: Params,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateDenomParams = {
+  value: MsgUpdateDenom,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteDenomResponseParams = {
+  value: MsgDeleteDenomResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryGetDenomRequestParams = {
+  value: QueryGetDenomRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateDenomResponseParams = {
+  value: MsgCreateDenomResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateDenomResponseParams = {
+  value: MsgUpdateDenomResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteDenomParams = {
+  value: MsgDeleteDenom,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllDenomResponseParams = {
+  value: QueryAllDenomResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 
 type queryParamsRequestParams = {
   value: QueryParamsRequest,
 };
 
-type paramsParams = {
-  value: Params,
+type queryAllDenomRequestParams = {
+  value: QueryAllDenomRequest,
+};
+
+type denomParams = {
+  value: Denom,
+};
+
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
+};
+
+type msgCreateDenomParams = {
+  value: MsgCreateDenom,
 };
 
 type queryParamsResponseParams = {
   value: QueryParamsResponse,
 };
 
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
+type queryGetDenomResponseParams = {
+  value: QueryGetDenomResponse,
+};
+
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type paramsParams = {
+  value: Params,
+};
+
+type msgUpdateDenomParams = {
+  value: MsgUpdateDenom,
+};
+
+type msgDeleteDenomResponseParams = {
+  value: MsgDeleteDenomResponse,
+};
+
+type queryGetDenomRequestParams = {
+  value: QueryGetDenomRequest,
+};
+
+type msgCreateDenomResponseParams = {
+  value: MsgCreateDenomResponse,
+};
+
+type msgUpdateDenomResponseParams = {
+  value: MsgUpdateDenomResponse,
+};
+
+type msgDeleteDenomParams = {
+  value: MsgDeleteDenom,
+};
+
+type queryAllDenomResponseParams = {
+  value: QueryAllDenomResponse,
+};
+
+type msgUpdateParamsResponseParams = {
+  value: MsgUpdateParamsResponse,
 };
 
 
@@ -108,34 +228,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.')
@@ -150,31 +242,31 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+		async sendQueryAllDenomRequest({ value, fee, memo }: sendQueryAllDenomRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryAllDenomRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.params({ value: Params.fromPartial(value) })
+				let msg = this.queryAllDenomRequest({ value: QueryAllDenomRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryAllDenomRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendDenom({ value, fee, memo }: sendDenomParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendDenom: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				let msg = this.denom({ value: Denom.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendDenom: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -192,22 +284,188 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		
-		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/bomb.tokenfactory.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+		async sendMsgCreateDenom({ value, fee, memo }: sendMsgCreateDenomParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateDenom: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateDenom({ value: MsgCreateDenom.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgCreateDenom: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/bomb.tokenfactory.GenesisState", value: GenesisState.fromPartial( value ) }  
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
+		
+		async sendQueryGetDenomResponse({ value, fee, memo }: sendQueryGetDenomResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetDenomResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetDenomResponse({ value: QueryGetDenomResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetDenomResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.params({ value: Params.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateDenom({ value, fee, memo }: sendMsgUpdateDenomParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateDenom: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateDenom({ value: MsgUpdateDenom.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateDenom: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteDenomResponse({ value, fee, memo }: sendMsgDeleteDenomResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteDenomResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgDeleteDenomResponse({ value: MsgDeleteDenomResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteDenomResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryGetDenomRequest({ value, fee, memo }: sendQueryGetDenomRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryGetDenomRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryGetDenomRequest({ value: QueryGetDenomRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryGetDenomRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateDenomResponse({ value, fee, memo }: sendMsgCreateDenomResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateDenomResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateDenomResponse({ value: MsgCreateDenomResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateDenomResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateDenomResponse({ value, fee, memo }: sendMsgUpdateDenomResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateDenomResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateDenomResponse({ value: MsgUpdateDenomResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateDenomResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteDenom({ value, fee, memo }: sendMsgDeleteDenomParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteDenom: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgDeleteDenom({ value: MsgDeleteDenom.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteDenom: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryAllDenomResponse({ value, fee, memo }: sendQueryAllDenomResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllDenomResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllDenomResponse({ value: QueryAllDenomResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllDenomResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		
 		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
 			try {
@@ -217,11 +475,35 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		params({ value }: paramsParams): EncodeObject {
+		queryAllDenomRequest({ value }: queryAllDenomRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/bomb.tokenfactory.Params", value: Params.fromPartial( value ) }  
+				return { typeUrl: "/bomb.tokenfactory.QueryAllDenomRequest", value: QueryAllDenomRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryAllDenomRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		denom({ value }: denomParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.Denom", value: Denom.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Denom: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateDenom({ value }: msgCreateDenomParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgCreateDenom", value: MsgCreateDenom.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateDenom: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -233,11 +515,91 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
+		queryGetDenomResponse({ value }: queryGetDenomResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/bomb.tokenfactory.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+				return { typeUrl: "/bomb.tokenfactory.QueryGetDenomResponse", value: QueryGetDenomResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGetDenomResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		params({ value }: paramsParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.Params", value: Params.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateDenom({ value }: msgUpdateDenomParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgUpdateDenom", value: MsgUpdateDenom.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateDenom: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteDenomResponse({ value }: msgDeleteDenomResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgDeleteDenomResponse", value: MsgDeleteDenomResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteDenomResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryGetDenomRequest({ value }: queryGetDenomRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.QueryGetDenomRequest", value: QueryGetDenomRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryGetDenomRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateDenomResponse({ value }: msgCreateDenomResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgCreateDenomResponse", value: MsgCreateDenomResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateDenomResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateDenomResponse({ value }: msgUpdateDenomResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgUpdateDenomResponse", value: MsgUpdateDenomResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateDenomResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteDenom({ value }: msgDeleteDenomParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgDeleteDenom", value: MsgDeleteDenom.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteDenom: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllDenomResponse({ value }: queryAllDenomResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.QueryAllDenomResponse", value: QueryAllDenomResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllDenomResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/bomb.tokenfactory.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -263,7 +625,6 @@ class SDKModule {
 		this.query = queryClient({ addr: client.env.apiURL });		
 		this.updateTX(client);
 		this.structure =  {
-						Denom: getStructure(typeDenom.fromPartial({})),
 						
 		};
 		client.on('signer-changed',(signer) => {			

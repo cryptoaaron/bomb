@@ -44,6 +44,7 @@ func initRootCmd(
 	// add keybase, auxiliary RPC, query, genesis, and tx child commands
 	rootCmd.AddCommand(
 		server.StatusCommand(),
+		genutilcli.ValidateGenesisCmd(basicManager),
 		genesisCommand(txConfig, basicManager),
 		queryCommand(),
 		txCommand(),
