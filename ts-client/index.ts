@@ -2,6 +2,7 @@
 import { Registry } from '@cosmjs/proto-signing'
 import { IgniteClient } from "./client";
 import { MissingWalletError } from "./helpers";
+import { IgntModule as BombTokenfactory, msgTypes as BombTokenfactoryMsgTypes } from './bomb.tokenfactory'
 import { IgntModule as CosmosAuthV1Beta1, msgTypes as CosmosAuthV1Beta1MsgTypes } from './cosmos.auth.v1beta1'
 import { IgntModule as CosmosAuthzV1Beta1, msgTypes as CosmosAuthzV1Beta1MsgTypes } from './cosmos.authz.v1beta1'
 import { IgntModule as CosmosBankV1Beta1, msgTypes as CosmosBankV1Beta1MsgTypes } from './cosmos.bank.v1beta1'
@@ -34,10 +35,11 @@ import { IgntModule as IbcCoreConnectionV1, msgTypes as IbcCoreConnectionV1MsgTy
 
 
 const Client = IgniteClient.plugin([
-  CosmosAuthV1Beta1, CosmosAuthzV1Beta1, CosmosBankV1Beta1, CosmosBaseNodeV1Beta1, CosmosBaseTendermintV1Beta1, CosmosCircuitV1, CosmosConsensusV1, CosmosCrisisV1Beta1, CosmosDistributionV1Beta1, CosmosEvidenceV1Beta1, CosmosFeegrantV1Beta1, CosmosGovV1, CosmosGovV1Beta1, CosmosGroupV1, CosmosMintV1Beta1, CosmosNftV1Beta1, CosmosParamsV1Beta1, CosmosSlashingV1Beta1, CosmosStakingV1Beta1, CosmosTxV1Beta1, CosmosUpgradeV1Beta1, CosmosVestingV1Beta1, IbcApplicationsFeeV1, IbcApplicationsInterchainAccountsControllerV1, IbcApplicationsInterchainAccountsHostV1, IbcApplicationsTransferV1, IbcCoreChannelV1, IbcCoreClientV1, IbcCoreConnectionV1
+    BombTokenfactory, CosmosAuthV1Beta1, CosmosAuthzV1Beta1, CosmosBankV1Beta1, CosmosBaseNodeV1Beta1, CosmosBaseTendermintV1Beta1, CosmosCircuitV1, CosmosConsensusV1, CosmosCrisisV1Beta1, CosmosDistributionV1Beta1, CosmosEvidenceV1Beta1, CosmosFeegrantV1Beta1, CosmosGovV1, CosmosGovV1Beta1, CosmosGroupV1, CosmosMintV1Beta1, CosmosNftV1Beta1, CosmosParamsV1Beta1, CosmosSlashingV1Beta1, CosmosStakingV1Beta1, CosmosTxV1Beta1, CosmosUpgradeV1Beta1, CosmosVestingV1Beta1, IbcApplicationsFeeV1, IbcApplicationsInterchainAccountsControllerV1, IbcApplicationsInterchainAccountsHostV1, IbcApplicationsTransferV1, IbcCoreChannelV1, IbcCoreClientV1, IbcCoreConnectionV1
 ]);
 
 const registry = new Registry([
+  ...BombTokenfactoryMsgTypes,
   ...CosmosAuthV1Beta1MsgTypes,
   ...CosmosAuthzV1Beta1MsgTypes,
   ...CosmosBankV1Beta1MsgTypes,
@@ -67,11 +69,11 @@ const registry = new Registry([
   ...IbcCoreChannelV1MsgTypes,
   ...IbcCoreClientV1MsgTypes,
   ...IbcCoreConnectionV1MsgTypes,
-
+  
 ])
 
 export {
-  Client,
-  registry,
-  MissingWalletError
+    Client,
+    registry,
+    MissingWalletError
 }
