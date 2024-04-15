@@ -45,6 +45,7 @@ func initRootCmd(
 	rootCmd.AddCommand(
 		server.StatusCommand(),
 		genutilcli.ValidateGenesisCmd(basicManager),
+		genutilcli.AddGenesisAccountCmd(app.DefaultNodeHome, txConfig.SigningContext().AddressCodec()),
 		genesisCommand(txConfig, basicManager),
 		queryCommand(),
 		txCommand(),
