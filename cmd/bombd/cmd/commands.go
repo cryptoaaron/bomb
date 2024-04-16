@@ -48,7 +48,7 @@ func initRootCmd(
 		server.StatusCommand(),
 		genutilcli.ValidateGenesisCmd(basicManager),
 		genutilcli.GenTxCmd(basicManager, txConfig, banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome, txConfig.SigningContext().ValidatorAddressCodec()),
-		genutilcli.AddGenesisAccountCmd(app.DefaultNodeHome, txConfig.SigningContext().ValidatorAddressCodec()),
+		genutilcli.AddGenesisAccountCmd(app.DefaultNodeHome, txConfig.SigningContext().AddressCodec()),
 		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome, types.DefaultMessageValidator, txConfig.SigningContext().ValidatorAddressCodec()),
 
 		genesisCommand(txConfig, basicManager),
